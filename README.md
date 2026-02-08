@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 💰 Expense Tracker - MERN Stack
 
-## Getting Started
+A full-stack expense tracking application built with MongoDB, Express.js, React, and Node.js.
 
-First, run the development server:
+## Features
 
+- 🔐 **JWT Authentication** - Secure login and registration
+- 💵 **Transaction Management** - Add, edit, delete income and expenses
+- 📊 **Analytics Dashboard** - Pie charts and line charts for spending insights
+- 🏷️ **Category Filtering** - Filter transactions by category
+- 🔍 **Search** - Search transactions by description
+- 📱 **Responsive Design** - Works on desktop and mobile
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | React 18, Vite, Tailwind CSS, Recharts |
+| Backend | Node.js, Express.js, JWT |
+| Database | MongoDB with Mongoose |
+| DevOps | Docker, docker-compose |
+
+## Quick Start
+
+### Prerequisites
+- Node.js 18+
+- MongoDB (local or Docker)
+
+### 1. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run install-all
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Start MongoDB
+Make sure MongoDB is running on `localhost:27017`
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 3. Seed Database (Optional)
+```bash
+npm run seed
+```
+Creates test users:
+- `user@test.com` / `password123`
+- `admin@test.com` / `password123`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Start Development Servers
+```bash
+npm run dev
+```
+- Frontend: http://localhost:3000
+- Backend: http://localhost:5000
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+expense-tracker/
+├── backend/
+│   ├── models/          # Mongoose models
+│   ├── routes/          # API routes
+│   ├── middleware/      # Auth & error handling
+│   ├── server.js        # Express server
+│   └── seed.js          # Database seeder
+├── frontend/
+│   ├── src/
+│   │   ├── components/  # React components
+│   │   ├── pages/       # Page components
+│   │   ├── context/     # Auth context
+│   │   └── utils/       # API utility
+│   └── ...config files
+├── docker-compose.yml
+└── package.json
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API Endpoints
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/auth/register | Register user |
+| POST | /api/auth/login | Login user |
+| GET | /api/auth/me | Get current user |
+| GET | /api/transactions | Get all transactions |
+| POST | /api/transactions | Create transaction |
+| PUT | /api/transactions/:id | Update transaction |
+| DELETE | /api/transactions/:id | Delete transaction |
+| GET | /api/analytics/summary | Get summary stats |
+| GET | /api/analytics/by-category | Get category breakdown |
+| GET | /api/analytics/trends | Get monthly trends |
 
-## Deploy on Vercel
+## Docker Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+docker-compose up -d
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Access at http://localhost:3000
+
+## License
+
+MIT
